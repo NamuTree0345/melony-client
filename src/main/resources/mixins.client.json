@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "xyz.namutree0345.client.mixins",
+  "refmap": "mixin.client.refmap.json",
+  "verbose": true,
+  "mixins": [
+    "MixinMinecraft"
+  ]
+}
