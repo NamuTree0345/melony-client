@@ -22,12 +22,14 @@ public class DiscordRP {
         @EventTarget
         public void guiChanged(ClientGuiChangedEvent event) {
             if(rp.isInitiallized) {
-                if (event.screen instanceof GuiMainMenu) {
-                    rp.updateRP("메인 메뉴", "");
-                } else if (event.screen instanceof GuiSelectWorld || event.screen instanceof GuiCreateWorld) {
-                    rp.updateRP("싱글플레이 메뉴", "");
-                } else if (event.screen instanceof GuiMultiplayer) {
-                    rp.updateRP("멀티플레이 메뉴", "");
+                if (Minecraft.getMinecraft().getCurrentServerData() == null) {
+                    if (event.screen instanceof GuiMainMenu) {
+                        rp.updateRP("메인 메뉴", "");
+                    } else if (event.screen instanceof GuiSelectWorld || event.screen instanceof GuiCreateWorld) {
+                        rp.updateRP("싱글플레이 메뉴", "");
+                    } else if (event.screen instanceof GuiMultiplayer) {
+                        rp.updateRP("멀티플레이 메뉴", "");
+                    }
                 }
             }
         }
@@ -39,7 +41,11 @@ public class DiscordRP {
 
         @EventTarget
         public void serverConnect(ConnectServerEvent event) {
-            if(event.)
+            if(event.port == 25565) {
+                rp.updateRP("멀티플레이", event.ip + "에서 플레이 중");
+            } else {
+                rp.updateRP("멀티플레이", event.ip + ":" + event.port + "에서 플레이 중");
+            }
         }
     }
 
