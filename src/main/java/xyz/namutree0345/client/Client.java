@@ -16,6 +16,7 @@ public class Client {
     public void init() {
         EventManager.register(new DiscordRP.DiscordRPHandler());
         EventManager.register(this);
+        //EventManager.register(new OverrideGUI());
         discordRP.initRP();
     }
 

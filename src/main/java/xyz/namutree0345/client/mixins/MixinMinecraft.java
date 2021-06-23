@@ -1,6 +1,7 @@
 package xyz.namutree0345.client.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.world.WorldSettings;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,7 @@ import xyz.namutree0345.client.event.impl.ClientShutdownEvent;
 import xyz.namutree0345.client.event.impl.ClientTickEvent;
 import xyz.namutree0345.client.event.impl.IntegratedServerLaunchEvent;
 import xyz.namutree0345.client.event.impl.gui.ClientGuiChangedEvent;
+import xyz.namutree0345.client.gui.MainMenu;
 
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
@@ -41,9 +43,14 @@ public class MixinMinecraft {
         new ClientShutdownEvent().call();
     }
 
-    @Inject(method = "displayGuiScreen", at = @At("HEAD"))
+    @Inject(method = "displayGuiScreen", at = @At("HEAD"), cancellable = true)
     public void displayGuiScreen(GuiScreen guiScreenIn, CallbackInfo ci) {
         new ClientGuiChangedEvent(guiScreenIn).call();
+        if(guiScreenIn instanceof GuiMainMenu) {
+            System.out.println("HEY!!");
+            Minecraft.getMinecraft().displayGuiScreen(new MainMenu());
+            ci.cancel();
+        }
     }
 
     @Inject(method = "launchIntegratedServer", at = @At("TAIL"))
