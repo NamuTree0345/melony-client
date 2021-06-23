@@ -42,6 +42,7 @@ public class MainMenu extends GuiScreen {
         int buttonWidth = 38 * 3;
         int buttonHeight = 20;
         this.buttonList.add(new GuiButton(0, rectX + rectWidth / 2 - buttonWidth / 2, rectY + rectHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight, "Singleplay"));
+        this.buttonList.add(new GuiButton(0, rectX + rectWidth / 2 - buttonWidth / 2, rectY + rectHeight / 2 - buttonHeight / 2 + (buttonHeight * 1) + 3, buttonWidth, buttonHeight, "Multiplay"));
 
     }
 
@@ -61,12 +62,8 @@ public class MainMenu extends GuiScreen {
         int i = 274;
         int j = this.width / 2 - i / 2;
         int k = 30;
-        /*
         this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
-        this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
-
-
-         */
+        //this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
         int rectX = sr.getScaledWidth() / 2 - rectWidth / 2;
         int rectY = sr.getScaledHeight() / 2 - rectHeight / 2;
