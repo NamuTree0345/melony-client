@@ -2,6 +2,7 @@ package xyz.namutree0345.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,6 +20,11 @@ import java.io.IOException;
 
 public class MainMenu extends GuiScreen {
 
+    int rectWidth = 156;
+    int rectHeight = 180;
+    int logoHeightImage = 800 / 15;
+
+
     private ResourceLocation backgroundTexture;
     private DynamicTexture viewportTexture;
     private int panoramaTimer = 0;
@@ -28,6 +34,15 @@ public class MainMenu extends GuiScreen {
     public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
+
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        int rectX = sr.getScaledWidth() / 2 - rectWidth / 2;
+        int rectY = sr.getScaledHeight() / 2 - rectHeight / 2;
+
+        int buttonWidth = 38 * 3;
+        int buttonHeight = 20;
+        this.buttonList.add(new GuiButton(0, rectX + rectWidth / 2 - buttonWidth / 2, rectY + rectHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight, "Singleplay"));
+
     }
 
     @Override
@@ -46,13 +61,13 @@ public class MainMenu extends GuiScreen {
         int i = 274;
         int j = this.width / 2 - i / 2;
         int k = 30;
+        /*
         this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
         this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
 
+
+         */
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
-        int rectWidth = 156;
-        int rectHeight = 180;
-        int logoHeightImage = 800 / 15;
         int rectX = sr.getScaledWidth() / 2 - rectWidth / 2;
         int rectY = sr.getScaledHeight() / 2 - rectHeight / 2;
         Gui.drawRect(rectX, rectY + logoHeightImage + 3, rectWidth + rectX, rectHeight + rectY + logoHeightImage + 3, new Color(0, 0, 0, 50).getRGB());
